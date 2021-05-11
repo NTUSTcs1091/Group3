@@ -8,51 +8,48 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
 #ifndef _SHORTLINK_SRC_SURL_H_
 #define _SHORTLINK_SRC_SURL_H_
 
-#include <string>
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <string>
 
-namespace shortlink 
-{
-	// shorten the using of the class name
-	typedef boost::gregorian::date Date;
+namespace shortlink {
+// shorten the using of the class name
+typedef boost::gregorian::date Date;
 
-	// A data Type to store a short URL and its expire time
-	// url name wont be change after the time you created.
-	// Example:
-	//		std::string ds("2021/04/19");
-	//		SURL surl("https:://www.google.com", Date(from_string(ds)));
-	//		// Update the expire time after it is re-created
-	//		Date now = boost::gregorian::day_clock::local_day();
-	//		surl.SetExpireTime(now);
-	class SURL
-	{
-	public:
+// A data Type to store a short URL and its expire time
+// url name wont be change after the time you created.
+// Example:
+//		std::string ds("2021/04/19");
+//		SURL surl("https:://www.google.com", Date(from_string(ds)));
+//		// Update the expire time after it is re-created
+//		Date now = boost::gregorian::day_clock::local_day();
+//		surl.SetExpireTime(now);
+class SURL {
+public:
+  // default constructor
+  SURL();
 
-		// default constructor
-		SURL();
-		
-		// default constructor with target url and now date
-		SURL(const std::string& url);
+  // default constructor with target url and now date
+  SURL(const std::string &url);
 
-		// default contructor with target url and specific expire date
-		SURL(const std::string& url, const Date& expire);
+  // default contructor with target url and specific expire date
+  SURL(const std::string &url, const Date &expire);
 
-		// get the name of the SURL
-		std::string GetSURL() const;
+  // get the name of the SURL
+  std::string GetSURL() const;
 
-		// get the expire time of the SURL
-		std::string GetExpireTime() const;
+  // get the expire time of the SURL
+  std::string GetExpireTime() const;
 
-		// update the expire time of the SURL
-		std::string SetExpireTime(const Date& date);
-	private:
+  // update the expire time of the SURL
+  std::string SetExpireTime(const Date &date);
 
-		// the whole url of the SURL
-		std::string url;
+private:
+  // the whole url of the SURL
+  std::string url;
 
-		// the expire date of the SURL, data type using boost library
-		Date expire;
-	};
-}	// namespace shortlink
+  // the expire date of the SURL, data type using boost library
+  Date expire;
+};
+} // namespace shortlink
 
 #endif // !_SHORTLINK_SRC_SURL_H_
