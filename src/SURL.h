@@ -26,29 +26,30 @@ typedef boost::gregorian::date Date;
 class SURL {
 public:
   // default constructor
-  SURL();
+  SURL() = default;
 
   // default constructor with target url and now date
-  SURL(const std::string &url);
+  SURL(const std::string &raw_url, const std::string &surl);
 
   // default contructor with target url and specific expire date
-  SURL(const std::string &url, const Date &expire);
+  SURL(const std::string &raw_url, const std::string &surl,
+       const std::string &url, const Date &expire);
 
   // get the name of the SURL
-  std::string GetSURL() const;
+  std::string GetSURL() const { return surl; }
 
   // get the expire time of the SURL
-  std::string GetExpireTime() const;
+  Date GetExpireTime() const { return expire; }
 
   // update the expire time of the SURL
-  std::string SetExpireTime(const Date &date);
+  void SetExpireTime(const Date &date) { expire = date; }
 
 private:
   // the original url of the SURL
-  std::string rawURL;
+  std::string raw_url;
 
   // the short url of the SURL
-  std::string sURL;
+  std::string surl;
 
   // the expire date of the SURL, data type using boost library
   Date expire;
