@@ -38,6 +38,9 @@ public:
   // get the name of the SURL
   std::string GetSURL() const { return surl; }
 
+  // get the name of the url
+  std::string GetUrl() const { return raw_url; }
+
   // get the expire time of the SURL
   Date GetExpireTime() const { return expire; }
 
