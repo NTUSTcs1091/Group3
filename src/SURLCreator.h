@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2021 Chiu Yen-Chen, Swen Sun-Yen, Wen Yong-Wei, Yuan Wei-Chen.
+Copyright (c) 2021 Chiu Yen-Chen, Swen Sun-Yen, Wen Yong-Wei.
 All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file. See the AUTHORS file for names of contributors.
@@ -24,7 +24,8 @@ public:
 
   // Input the original URL and encoding it to a new SURL key.
   // default length of surl key is 8, can deal range 6 ~ 10.
-  static std::string CreateSURL(const std::string &raw_url, int length = 8);
+  static std::string CreateSURL(const std::string &raw_url, int offset = 0,
+                                int length = 8);
 
 private:
   // transfer hex to bits
@@ -32,6 +33,12 @@ private:
 
   // the base64 table for mapping id to character
   static const std::string base64_table;
+
+  // The max length of the short url
+  static const int kMaxLengthOfSurl;
+
+  // The min length of the short url
+  static const int kMinLengthOfSurl;
 };
 
 } // namespace shortlink

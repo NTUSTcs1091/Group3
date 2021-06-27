@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2021 Chiu Yen-Chen, Swen Sun-Yen, Wen Yong-Wei, Yuan Wei-Chen.
+Copyright (c) 2021 Chiu Yen-Chen, Swen Sun-Yen, Wen Yong-Wei.
 All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file. See the AUTHORS file for names of contributors.
@@ -8,6 +8,10 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
 #include "SURLCreator.h"
 
 namespace shortlink {
+// set the defualt length of short url
+const int SURLCreator::kMaxLengthOfSurl = 10;
+const int SURLCreator::kMinLengthOfSurl = 6;
+
 // static variable
 const std::string SURLCreator::base64_table =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-";
@@ -18,12 +22,14 @@ const std::unordered_map<char, std::string> SURLCreator::hex2bits = {
     {'c', "1100"}, {'d', "1101"}, {'e', "1110"}, {'f', "1111"},
 };
 
-std::string SURLCreator::CreateSURL(const std::string &raw_url, int length) {
+std::string SURLCreator::CreateSURL(const std::string &raw_url, int offset,
+                                    int length) {
   // make sure length is in the range of 6 ~ 10
-  length = std::max(std::min(length, 10), 6);
+  length = std::max(std::min(length, kMaxLengthOfSurl), kMinLengthOfSurl);
 
   // get hash Code in length of 20
   size_t hashCode = Hasher::HashRawUrl(raw_url);
+  hashCode += offset;
 
   // transfer hash Code to Hex
   std::stringstream stream;
@@ -45,9 +51,8 @@ std::string SURLCreator::CreateSURL(const std::string &raw_url, int length) {
   }
 
   // extract a string with a length of 6 ~ 10, depending on the parameter.
-  surl_key = surl_key.substr(0, length);
+  surl_key = surl_key.substr(kMaxLengthOfSurl - length, length);
 
   return surl_key;
 }
-
 } // namespace shortlink
