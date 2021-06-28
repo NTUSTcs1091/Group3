@@ -8,6 +8,7 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
 #define SHORTLINK_SRC_REQUESTHANDLER_H_
 #include <string>
 
+#include "Database.h"
 #include "RequestData.h"
 #include "SURL.h"
 
@@ -24,9 +25,9 @@ class RequestHandler {
   ~RequestHandler();
 
   // Run the request from the user. Returns the requested data.
-  std::string RunRequest();
+  virtual std::string RunRequest();
 
- private:
+ protected:
   std::string respData;
   RequestData reqData;
 };
