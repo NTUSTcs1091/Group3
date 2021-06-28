@@ -24,9 +24,9 @@ class RequestHandler {
   ~RequestHandler();
 
   // Run the request from the user. Returns the requested data.
-  std::string RunRequest();
+  virtual std::string RunRequest();
 
- private:
+ protected:
   std::string respData;
   RequestData reqData;
 };
