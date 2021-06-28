@@ -1,6 +1,5 @@
 /*
-Copyright (c) 2021 Chiu Yen-Chen,
-Swen Sun-Yen.
+Copyright (c) 2021 Chiu Yen-Chen, Swen Sun-Yen, Wen Yong-Wei, Yuan Wei-Chen.
 All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file. See the AUTHORS file for names of contributors.
@@ -61,7 +60,7 @@ class HttpServer {
   void StartAccept();
   // Handle the connected socket. Hand over the socket to a working thread and
   // call StartAccept() to keep waiting for another connection. (This function
-  // will be autometically called after async_accept() finishes)
+  // will be autometically called again after async_accept() finishes)
   void HandleAccept(const boost::system::error_code& error);
   //	io_context for async works
   boost::asio::io_context& io_context;
