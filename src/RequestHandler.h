@@ -8,6 +8,7 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
 #define SHORTLINK_SRC_REQUESTHANDLER_H_
 #include <string>
 
+#include "Database.h"
 #include "RequestData.h"
 #include "SURL.h"
 

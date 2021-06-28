@@ -20,20 +20,16 @@ namespace shortlink {
 //    std::string surl = handler.GetSURL();
 class CreateHandler : RequestHandler {
  public:
-  CreateHandler();
-  ~CreateHandler();
+  CreateHandler() = default;
+  ~CreateHandler() = default;
 
   // Creates a SURL in database that is paired with original URL.
   void CreateSURL();
   // Returns the SURL that created in database. If it isn't created, returns
   // empty string.
   std::string GetSURL();
-
- private:
-  Hasher hasher;
-
-  // Hashes the URL to SURL, returns SURL.
-  std::string EncodeURL();
+  // override the base member function to work on creating SURL.
+  std::string RunRequest() override;
 };
 
 }  // namespace shortlink
