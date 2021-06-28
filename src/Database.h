@@ -50,36 +50,37 @@ public:
   // Input a rawURL, return SURL if create is successful. Return "" if create
   // fail. Encode the rawURL to SURL and check whether it exists. If it exists
   // update expire time, else create the URL.
-  std::string CreateSURL(const std::string &raw_url);
+  static std::string CreateSURL(const std::string &raw_url);
 
   // Read the lut whether URL exists. Return rawURL if SURL exists. Return "" if
   // SURL doesn't exist.
-  std::string ReadSURL(const std::string &surl);
+  static std::string ReadSURL(const std::string &surl);
 
 private:
   // lock the mutex when it is inserting.
   // There is only one inserting in the same time.
-  bool InsertSURL(const std::string &short_url, std::unique_ptr<SURL> surl);
+  static bool InsertSURL(const std::string &short_url,
+                         std::unique_ptr<SURL> surl);
 
   // If there is a rawURL which encoding to a SURL that exists in LUT,
   // Update its expire time and don't need to create new one in LUT.
-  bool UpdateSURL(std::unique_ptr<SURL> surl, const Date &expire);
+  static bool UpdateSURL(std::unique_ptr<SURL> surl, const Date &expire);
 
   // It is for daily work. Check if the expire time of the SURL is over.
-  bool CheckSURLExpiration();
+  static bool CheckSURLExpiration();
 
   // If the expire time of the SURL is over, erase if in lut.
-  bool DeleteSURL();
+  static bool DeleteSURL();
 
   // The look up table of the SURL. Use SURL as key to find the original url.
-  std::unordered_map<std::string, std::unique_ptr<SURL>> lut;
+  static std::unordered_map<std::string, std::unique_ptr<SURL>> lut;
 
   // Record the last time we check the surl expiration
-  Date last_expiration;
+  static Date last_expiration;
 
   // Lock to prevent multiple user from modifying the SURL.
   // There is only one modification in the same time.
-  std::mutex write_lock;
+  static std::mutex write_lock;
 };
 } // namespace shortlink
 

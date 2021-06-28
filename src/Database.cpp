@@ -8,6 +8,12 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
 #include "Database.h"
 
 namespace shortlink {
+
+// static variable initial
+std::unordered_map<std::string, std::unique_ptr<SURL>> Database::lut;
+Date Database::last_expiration = boost::gregorian::day_clock::local_day();
+std::mutex Database::write_lock;
+
 std::string Database::CreateSURL(const std::string &raw_url) {
   // Create the short url
   std::string short_url = SURLCreator::CreateSURL(raw_url);
