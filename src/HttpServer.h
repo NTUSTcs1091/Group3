@@ -14,6 +14,7 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
 #include <string>
 
 #include "ThreadPool.h"
+#include "SocketHandler.h"
 
 #ifndef SHORTLINK_SRC_HTTPSERVER_H_
 #define SHORTLINK_SRC_HTTPSERVER_H_
