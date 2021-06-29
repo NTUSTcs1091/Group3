@@ -6,4 +6,8 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
  */
 #include "RequestHandler.h"
 
+namespace shortlink {
+
 std::string RequestHandler::RunRequest() { return ""; }
+
+}  // namespace shortlink

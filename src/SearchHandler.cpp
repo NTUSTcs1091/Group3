@@ -6,9 +6,13 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
  */
 #include "SearchHandler.h"
 
+namespace shortlink {
+
 std::string SearchHandler::SearchURL() {
   respData = Database.ReadSURL(reqData.target);
   return respData;
 }
 
 std::string SearchHandler::RunRequest() { return SearchURL(); }
+
+}  // namespace shortlink

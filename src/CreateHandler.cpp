@@ -6,6 +6,8 @@ found in the LICENSE file. See the AUTHORS file for names of contributors.
  */
 #include "CreateHandler.h"
 
+namespace shortlink {
+
 void CreateHandler::CreateSURL() {
   // check if it has original URL
   respData = Database.CreateSURL(reqData.target);
@@ -20,3 +22,5 @@ std::string CreateHandler::RunRequest() {
   CreateSURL();
   return GetSURL();
 }
+
+}  // namespace shortlink
