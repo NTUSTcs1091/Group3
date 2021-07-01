@@ -39,7 +39,7 @@ namespace shortlink
         //start parse data
         void Run(const std::string& raw_request_data);
         //return parsed data to HTTP server class 
-        const std::string SendResponse();      
+        const std::string GetResponse();      
     };
 }// namespace shortlink
 
